@@ -26,7 +26,7 @@ namespace Weather.API.Controllers
 
         // Single city
         [HttpGet]
-        [Route("id:guid")] // Route only accepts guid types
+        [Route("{id:guid}")] // Route only accepts guid types
         [ActionName("GetCity")]
         public async Task<IActionResult> GetCity([FromRoute] Guid id)
         {
@@ -55,7 +55,7 @@ namespace Weather.API.Controllers
         // Update city
 
         [HttpPut]
-        [Route("id:guid")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> UpdateCity([FromRoute] Guid id, [FromBody] City city)
         {
             var cityFromDb= await dbContext.Cities.FirstOrDefaultAsync(c=>c.Id==id);
@@ -74,7 +74,7 @@ namespace Weather.API.Controllers
         // Delete City
 
         [HttpDelete]
-        [Route("id:guid")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> DeleteCity([FromRoute] Guid id)
         {
             var cityFromDb = await dbContext.Cities.FirstOrDefaultAsync(c => c.Id == id);
