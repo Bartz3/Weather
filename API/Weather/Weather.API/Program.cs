@@ -11,9 +11,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var CS = builder.Configuration.GetConnectionString("WeatherDbConnectionString");
-builder.Services.AddDbContext<AppDbContext>(o => 
+builder.Services.AddDbContext<AppDbContext>(o =>
 o.UseSqlServer(CS)
 );
+
+string defaultCorsPolicy = "default";
+// Cross-Origin Resource Sharing configuration
+// (controls which servers and websites have permission to request access to resources)
+builder.Services.AddCors((setup) =>
+    setup.AddPolicy(defaultCorsPolicy, (options) =>
+        options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin()
+));
 
 var app = builder.Build();
 
@@ -22,6 +30,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(defaultCorsPolicy);
 }
 
 app.UseHttpsRedirection();

@@ -1,20 +1,21 @@
 <div class="container">
-  <h2>WeatherCityApp</h2>
   <div class="city-container">
+    <h2>WeatherCityApp <i class="fa-regular fa-sun"></i></h2>
     <div class="city-form">
-      <form action=" ">
+      <form #form="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="">City name</label>
-          <input type="text" name="cityName">
+          <input type="text" name="cityName" [(ngModel)]="city.name">
         </div>
         <div class="form-group">
           <label for="">Country</label>
-          <input type="text" name="countryName">
+          <input type="text" name="countryName"  [(ngModel)]="city.country">
         </div>
         <div class="form-group">
-          <label for="">Population</label>
-          <input type="text" name="population">
+          <label for="population">Population</label>
+          <input type="number" name="population" min="0"  [(ngModel)]="city.population">
         </div>
+        
         <div class="form-group">
           <button>Save</button>
         </div>
@@ -22,14 +23,25 @@
     </div>
   </div>
   <div class="city grid">
-      <div class="city-row">
-        <div class="city-row-details">
-          <span>Name</span>
-          <span>1234567</span>
-        </div>
-        <div class="city-row-action">
-          <a><i class="fa-solid fa-trash"></i></a>
+
+    <div class="city-list-container">
+      
+      <div class="city-row" *ngFor="let city of cities">
+        <div (click)="populate(city)" class="city-row-details">
+          <span class="city-row-details-item">{{ city.name}}</span>
+          <span class="city-row-details-item">{{ city.country}}</span>
+          <span class="city-row-details-item">{{ city.population}}</span>
+          <!-- <span class="city-row-details-item">Choroszcz</span>
+            <span class="city-row-details-item">Polska</span>
+            <span class="city-row-details-item">932332239</span> -->
+          </div>
+          
+          <div class="city-row-action">
+            <a (click)="deleteCity(city.id)"><i class="fa-solid fa-trash"></i></a>
+          </div>
         </div>
       </div>
+        
+
   </div>
 </div>
