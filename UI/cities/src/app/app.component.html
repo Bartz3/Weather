@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container">
   <div class="city-container">
     <h2>WeatherCityApp <i class="fa-regular fa-sun"></i></h2>
     <h2></h2>
@@ -10,45 +10,71 @@
         </div>
         <div class="form-group">
           <label for="">Country</label>
-          <input type="text" name="countryName"  [(ngModel)]="city.country">
+          <input type="text" name="countryName" [(ngModel)]="city.country">
         </div>
         <div class="form-group">
           <label for="population">Population</label>
-          <input type="number" name="population" min="0"  [(ngModel)]="city.population">
+          <input type="number" name="population" min="0" [(ngModel)]="city.population">
         </div>
-        
-        <div class="form-group">
-          <button>Save</button>
-          <button (click)="cancelMethod(this.city)">Cancel</button>
+
+        <div class="form-group2">
+          <div class="button-container">
+            <button class="save-button">Save</button>
+            <button class="cancel-button" (click)="cancelMethod(this.city)">Cancel</button>
+            <button (click)="getWeather(city.name)">Show weather</button>
+          </div>
         </div>
       </form>
-      <form #form="ngForm" (submit)="onSubmitWeather()">
-        <button (click)="getWeather(city.name)">Show weather</button>
-      </form>
+
     </div>
   </div>
   <div class="city grid">
 
-    <div class="city-list-container">  
-      <div class="city-row" *ngFor="let city of cities">
-        <div (click)="populate(city)" class="city-row-details">
-          <span class="city-row-details-item">{{ city.name}}</span>
-          <span class="city-row-details-item">{{ city.country}}</span>
-          <span class="city-row-details-item">{{ city.population}}</span>
-          </div>
-          
-          <div class="city-row-action">
-            <a (click)="deleteCity(city.id)"><i class="fa-solid fa-trash"></i></a>
-          </div>
+    <div class="city-list-container">
+      <div class="city-row header-row">
+        <div class="city-row-details">
+          <span class="city-row-details-item">City</span>
+          <span class="city-row-details-item">Country</span>
+          <span class="city-row-details-item">Population</span>
         </div>
       </div>
-        
 
+      <div class="city-row" *ngFor="let city of cities">
+        <div (click)="populate(city)" class="city-row-details">
+          <span class="city-row-details-item">{{ city.name }}</span>
+          <span class="city-row-details-item">{{ city.country }}</span>
+          <span class="city-row-details-item">{{ city.population }}</span>
+        </div>
+
+        <div class="city-row-action">
+          <a (click)="deleteCity(city.id)"><i class="fa-solid fa-trash"></i></a>
+        </div>
+      </div>
+    </div>
   </div>
+
 </div>
+
 <div class="weather-container" *ngIf="weatherData">
   <div class="weather-data">
-    <h2>Temperature:{{ (weatherData.main.temp - 273.15) | number: '1.2-2' }}</h2>
-    <h2>Humidity:{{ weatherData.main.humidity }}</h2>
+    <h2>{{ weatherData.name }}</h2>
+    <div class="weather-info">
+      <div class="weather-info-item">
+        <span class="label">Temperature:</span>
+        <span class="value">{{ (weatherData.main.temp - kelvinConst) | number: '1.2-2' }} ℃</span>
+      </div>
+      <div class="weather-info-item">
+        <span class="label">Percived temperature:</span>
+        <span class="value">{{ (weatherData.main.feels_like - kelvinConst) | number: '1.2-2' }} ℃</span>
+      </div>
+      <div class="weather-info-item">
+        <span class="label">Pressure:</span>
+        <span class="value">{{ weatherData.main.pressure }} hPa</span>
+      </div>
+      <div class="weather-info-item">
+        <span class="label">Humidity:</span>
+        <span class="value">{{ weatherData.main.humidity }}%</span>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,15 +1,16 @@
 .container {
     display: flex;
+    margin: 0 auto; /*Div center*/
     max-width: 70%;
-    margin: 0 auto; /* Dodaj tę linię, aby wyśrodkować .container */
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
   
 
+
 .city-container {
-    flex: 0.6;
+    flex: 0.5;
     padding: 10px;
     border-right: 1px solid #ddd;
 }
@@ -25,7 +26,6 @@ h2 {
     color: #333;
 }
 
-/* Form Styles */
 .city-form form {
     margin-bottom: 20px;
     margin-right: 20px;
@@ -35,7 +35,13 @@ h2 {
     margin-bottom: 15px;
 }
 
-label {
+  .save-button, .cancel-button, .weather-button {
+    padding: 10px 20px; 
+    margin-right: 5px;
+  }
+  
+
+  label {
     display: block;
     font-weight: bold;
 }
@@ -82,15 +88,21 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border-bottom: 1px solid #eee; */
+  }
+  .header-row {
+    background-color: #f5f5f5; 
+    position: sticky;
+    top: 0;
+    z-index: 1; 
   }
   
+  
   .city-row-details-item {
-    flex: 1; /* Rozciągnij elementy, aby były obok siebie */
+    flex: 1; 
     padding: 9px;
     font-size: 16px;
     color: #333;
-    white-space: nowrap; /* Opcjonalnie, aby uniknąć zawijania tekstu */
+    white-space: nowrap; 
   }
   
 
@@ -133,16 +145,40 @@ button:hover {
     overflow: auto; 
   }
   .weather-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 10vh; 
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
     text-align: center;
+    margin-top: 20px;
   }
   
-  .weather-data {
-    /* Stylizacja danych pogodowych */
+  .weather-data h2 {
     font-size: 24px;
-    margin-top: 10px; /* Dodaj odstęp od góry, jeśli jest to potrzebne. */
+    margin: 10px 0;
   }
+  
+  .weather-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .weather-info-item {
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+
+  }
+  
+  .weather-info-item .label {
+    font-weight: bold;
+  }
+  
+  .weather-info-item .value {
+    margin-left: 10px;
+  }
+
   
