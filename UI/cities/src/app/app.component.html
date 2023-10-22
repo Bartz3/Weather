@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container" >
   <div class="city-container">
     <h2>WeatherCityApp <i class="fa-regular fa-sun"></i></h2>
+    <h2></h2>
     <div class="city-form">
       <form #form="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -18,22 +19,22 @@
         
         <div class="form-group">
           <button>Save</button>
+          <button (click)="cancelMethod(this.city)">Cancel</button>
         </div>
+      </form>
+      <form #form="ngForm" (submit)="onSubmitWeather()">
+        <button (click)="getWeather(city.name)">Show weather</button>
       </form>
     </div>
   </div>
   <div class="city grid">
 
-    <div class="city-list-container">
-      
+    <div class="city-list-container">  
       <div class="city-row" *ngFor="let city of cities">
         <div (click)="populate(city)" class="city-row-details">
           <span class="city-row-details-item">{{ city.name}}</span>
           <span class="city-row-details-item">{{ city.country}}</span>
           <span class="city-row-details-item">{{ city.population}}</span>
-          <!-- <span class="city-row-details-item">Choroszcz</span>
-            <span class="city-row-details-item">Polska</span>
-            <span class="city-row-details-item">932332239</span> -->
           </div>
           
           <div class="city-row-action">
@@ -43,5 +44,11 @@
       </div>
         
 
+  </div>
+</div>
+<div class="weather-container" *ngIf="weatherData">
+  <div class="weather-data">
+    <h2>Temperature:{{ (weatherData.main.temp - 273.15) | number: '1.2-2' }}</h2>
+    <h2>Humidity:{{ weatherData.main.humidity }}</h2>
   </div>
 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CitiesService } from './service/cities.service';
+import { CitiesService } from './services/cities.service';
 import { City } from 'src/models/city.model';
+import { WeatherService } from './services/weather.service';
+import { WeatherData } from 'src/models/weather.model';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +20,38 @@ export class AppComponent implements OnInit {
     population: 0
   }
 
-  constructor(private cityService: CitiesService){
+  weatherData?:WeatherData;
+
+  constructor(private cityService: CitiesService,
+    private weatherService:WeatherService){
 
   }
 
+  cancelMethod(city:City){
+    city={
+      id:'',
+      name:'',
+      country:'',
+      population: 0
+    }
+  }
+  onSubmitWeather(){
+    this.getWeather(this.city.name);
+  }
+  
+  getWeather(cityName:string){
+    this.weatherService.getWeatherData(cityName)
+    .subscribe({
+      next:(response)=>{
+        this.weatherData=response;
+        console.log(response);
+      }
+    })
+  }
+
   ngOnInit(): void {
-    this.getAllCities();
+    this.getAllCities();  
+    // this.getWeather('Bialystok');
   }
 
 getAllCities() {

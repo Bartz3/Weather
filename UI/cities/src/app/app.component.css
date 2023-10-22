@@ -132,4 +132,17 @@ button:hover {
     height: 300px; 
     overflow: auto; 
   }
+  .weather-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 10vh; 
+    text-align: center;
+  }
+  
+  .weather-data {
+    /* Stylizacja danych pogodowych */
+    font-size: 24px;
+    margin-top: 10px; /* Dodaj odstęp od góry, jeśli jest to potrzebne. */
+  }
   

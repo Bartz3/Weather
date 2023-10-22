@@ -23,13 +23,14 @@ export class CitiesService {
     return this.http.post<City>(this.baseUrl, city);
   }
 
-  deleteCity(id:string):Observable<City>{
-    return this.http.delete<City>(this.baseUrl+'/'+id);
+  deleteCity(id: string): Observable<City> {
+    return this.http.delete<City>(this.baseUrl + '/' + id);
   }
-  test='https://localhost:7029/api/Cities';
-  updateCity(city:City):Observable<City>{
-    console.log('haki'+city.id);
-    return this.http.put<City>(this.baseUrl+'/'+city.id,city);
+  test = 'https://localhost:7029/api/Cities';
+
+  updateCity(city: City): Observable<City> {
+    console.log('haki' + city.id);
+    return this.http.put<City>(this.baseUrl + '/' + city.id, city);
   }
   //UpdateCity/
 
